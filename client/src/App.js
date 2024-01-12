@@ -6,7 +6,8 @@ import ShowData from './todoComponent/ShowData';
 import axios from 'axios';
 
 const App = () => {
-  const host = 'https://mern-todo-list-backend.onrender.com';
+  //const host = 'https://mern-todo-list-backend.onrender.com';
+  const host = 'http://localhost:7770';
   const [item, setItem] = useState({ data: '' });
   const [addData, setAddData] = useState([]);
   const [holderText, setHolderText] = useState("Add Item");
@@ -26,13 +27,16 @@ const App = () => {
   }, [item, deleted]);
 
   const addItem = () => {
-    if (item.data !== "") {
+    //console.log('I am clicked')
+
+   if (item.data !== "") {
       axios
         .post(`${host}/api/data`, item)
         .then((res) => {
           setItem({ data: '' });
           setHolderText("Add Item");
           console.log(res.data.message);
+console.log("Data Inserted successfully");
         })
         .catch((err) => {
           console.log("Error couldn't add Item");
